@@ -81,7 +81,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!82 &8234020
 AudioSource:
   m_ObjectHideFlags: 1
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e2de3bb5c622845aa9ae50d390c019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialVelocity: {x: 5, y: 0, z: 800}
+  initialVelocity: {x: -70.6, y: 0, z: 3500}
 --- !u!114 &11479456
 MonoBehaviour:
   m_ObjectHideFlags: 1
