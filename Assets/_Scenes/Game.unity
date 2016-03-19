@@ -133,6 +133,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74331e4d05eb8214284524ca636b5d00, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &277569688 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11479456, guid: 74331e4d05eb8214284524ca636b5d00,
+    type: 2}
+  m_PrefabInternal: {fileID: 277569687}
+  m_Script: {fileID: 11500000, guid: 18ddb039f4c003548bfd07a58e46138d, type: 3}
 --- !u!1 &463233853
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,8 +171,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 154, y: 0}
-  m_SizeDelta: {x: 308, y: 0}
+  m_AnchoredPosition: {x: 150, y: 0}
+  m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463233855
 MonoBehaviour:
@@ -232,7 +238,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 154, y: -138}
+  m_AnchoredPosition: {x: 150, y: -138}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &744574420
@@ -458,8 +464,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -162, y: 0}
-  m_SizeDelta: {x: 324, y: 0}
+  m_AnchoredPosition: {x: -150, y: 0}
+  m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1266561709
 MonoBehaviour:
@@ -505,7 +511,6 @@ GameObject:
   - 20: {fileID: 1332921789}
   - 124: {fileID: 1332921788}
   - 92: {fileID: 1332921787}
-  - 81: {fileID: 1332921786}
   m_Layer: 0
   m_Name: Top Camera
   m_TagString: Untagged
@@ -513,13 +518,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1332921786
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1332921785}
-  m_Enabled: 1
 --- !u!92 &1332921787
 Behaviour:
   m_ObjectHideFlags: 0
@@ -693,6 +691,7 @@ GameObject:
   - 224: {fileID: 1871731784}
   - 222: {fileID: 1871731786}
   - 114: {fileID: 1871731785}
+  - 114: {fileID: 1871731787}
   m_Layer: 5
   m_Name: Touch Input
   m_TagString: Untagged
@@ -750,6 +749,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1871731783}
+--- !u!114 &1871731787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1871731783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 277569688}
+          m_MethodName: DragStart
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 277569688}
+          m_MethodName: DragEnd
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1946320896
 GameObject:
   m_ObjectHideFlags: 0
