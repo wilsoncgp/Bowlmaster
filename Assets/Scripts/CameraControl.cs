@@ -24,7 +24,22 @@ public class CameraControl : MonoBehaviour
         //  head pin but I figured that was too far forward.
         if(this.transform.position.z + offset.z + (ball.transform.localScale.z / 1.5f) < 1829)
         {
-            this.transform.position = ball.transform.position - offset;
+            PutCameraBehindBall();
         }
+
+        // TODO: Remove this when complete
+        // Temporary reset key to allow resetting
+        //  the ball and Camera without restarting the game.
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            ball.Reset();
+            PutCameraBehindBall();
+        }
+    }
+
+    // Reset the camera to be behind the ball
+    public void PutCameraBehindBall()
+    {
+        this.transform.position = ball.transform.position - offset;
     }
 }
