@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Ball : MonoBehaviour
 {
+    // TODO: Remove when completed, used to test specific launch velocities
     public Vector3 initialVelocity;
 
     private Vector3 startingPosition;
@@ -20,7 +21,21 @@ public class Ball : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
 
         Reset();
+
+        // TODO: Remove when completed, used to test specific launch velocities
         //Launch(initialVelocity);
+    }
+
+    void Update()
+    {
+        // TODO: Remove this when complete
+        // Temporary reset key to allow resetting
+        //  the ball and Camera without restarting the game
+        //  or hitting the Pin Setter box.
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reset();
+        }
     }
 
     public void Launch(Vector3 velocity)
