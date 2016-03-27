@@ -370,7 +370,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 422302, guid: 74331e4d05eb8214284524ca636b5d00, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 74331e4d05eb8214284524ca636b5d00, type: 2}
@@ -629,6 +629,7 @@ MonoBehaviour:
   pinNumberText: {fileID: 1669806240}
   ballResetTime: 3
   distanceToRaise: 60
+  pinSet: {fileID: 190976, guid: aba22cefd0496324d8df04916eba199d, type: 2}
 --- !u!23 &441277300
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1501,7 +1502,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 406448, guid: aba22cefd0496324d8df04916eba199d, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aba22cefd0496324d8df04916eba199d, type: 2}

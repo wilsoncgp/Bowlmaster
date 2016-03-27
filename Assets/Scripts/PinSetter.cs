@@ -8,6 +8,7 @@ public class PinSetter : MonoBehaviour
     public Text pinNumberText;
     public float ballResetTime = 3.0f;
     public float distanceToRaise = 60.0f;
+    public GameObject pinSet;
 
     private Ball ball;
     private bool ballEnteredBox = false;
@@ -60,6 +61,18 @@ public class PinSetter : MonoBehaviour
     public void RenewPins()
     {
         Debug.Log("Renewing pins");
+
+        GameObject pins = GameObject.Instantiate(pinSet, new Vector3(0, distanceToRaise, 1829), Quaternion.identity) as GameObject;
+        
+        // TODO: Review this code to stop pins from having gravity when they are renewed
+        //  It isn't perfect, the best way might be to have the prefabbed pins to be automatically
+        //  set to have no gravity and have a Startup Animation sub-state to generate and lower pins.
+        for(int i = 0; i < pins.transform.childCount; i++)
+        {
+            Pin pin = pins.transform.GetChild(i).gameObject.GetComponent<Pin>();
+            pin.SetUseGravity(false);
+        }
+
     }
 
     // Count the standing pins
