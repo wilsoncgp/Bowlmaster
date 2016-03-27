@@ -10,7 +10,10 @@ public class Pin : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rigidBody = this.GetComponent<Rigidbody>();
+        if (!this.rigidBody)
+        {
+            rigidBody = this.GetComponent<Rigidbody>();
+        }
     }
 
     // Update is called once per frame
@@ -28,6 +31,11 @@ public class Pin : MonoBehaviour
 
     public void SetUseGravity(bool useGravity)
     {
+        if(!this.rigidBody)
+        {
+            rigidBody = this.GetComponent<Rigidbody>();
+        }
+
         this.rigidBody.useGravity = useGravity;
     }
 }
