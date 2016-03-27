@@ -25,7 +25,7 @@ public class PinSetter : MonoBehaviour
     {
         if(ballEnteredBox)
         {
-            CheckStanding();
+            UpdateStandingPins();
         }
     }
 
@@ -87,7 +87,7 @@ public class PinSetter : MonoBehaviour
         return count;
     }
 
-    void CheckStanding()
+    void UpdateStandingPins()
     {
         // Grab the current standing count
         int standingCount = CountStanding();
@@ -135,16 +135,4 @@ public class PinSetter : MonoBehaviour
             ballEnteredBox = true;
         }
     }
-
-    void OnTriggerExit(Collider collider)
-    {
-        // Destroy pins exiting the Pin Setter's collider
-        Pin pin = collider.GetComponentInParent<Pin>();
-        if(pin)
-        {
-            Destroy(pin.gameObject);
-        }
-    }
-
-    
 }
