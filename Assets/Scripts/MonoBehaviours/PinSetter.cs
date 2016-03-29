@@ -10,14 +10,23 @@ public class PinSetter : MonoBehaviour
     public float distanceToRaise = 60.0f;
     public GameObject pinSet;
 
+    private const string tidyTriggerAnimationName = "tidyTrigger";
+    private const string resetTriggerAnimationName = "resetTrigger";
+
     private Ball ball;
     private bool ballEnteredBox = false;
     private float lastChangeTime = 0f;
+    private ActionMaster actionMaster;
+    private int lastSettledCount;
+    private Animator animator;
 
     // Use this for initialization
     void Start()
     {
         ball = GameObject.FindObjectOfType<Ball>();
+        animator = this.GetComponent<Animator>();
+        lastSettledCount = CountStanding();
+        actionMaster = new ActionMaster();
     }
 
     // Update is called once per frame
@@ -31,9 +40,6 @@ public class PinSetter : MonoBehaviour
 
     public void RaisePins()
     {
-        // Raise standing pins by given distance
-        Debug.Log("Raising pins");
-
         foreach (Pin pin in GameObject.FindObjectsOfType<Pin>())
         {
             if(pin.IsStanding())
@@ -46,8 +52,6 @@ public class PinSetter : MonoBehaviour
 
     public void LowerPins()
     {
-        Debug.Log("Lowering pins");
-
         foreach (Pin pin in GameObject.FindObjectsOfType<Pin>())
         {
             if (pin.IsStanding())
@@ -60,8 +64,6 @@ public class PinSetter : MonoBehaviour
 
     public void RenewPins()
     {
-        Debug.Log("Renewing pins");
-
         GameObject pins = GameObject.Instantiate(pinSet, new Vector3(0, distanceToRaise, 1829), Quaternion.identity) as GameObject;
         
         // TODO: Review this code to stop pins from having gravity when they are renewed
@@ -121,6 +123,21 @@ public class PinSetter : MonoBehaviour
     //  ready for the next roll of the bowling ball.
     void PinsHaveSettled()
     {
+        ActionMaster.Action action = actionMaster.Bowl(lastSettledCount - CountStanding());
+
+        switch(action)
+        {
+            case ActionMaster.Action.Tidy:
+                animator.SetTrigger(tidyTriggerAnimationName);
+                break;
+            case ActionMaster.Action.Reset:
+            case ActionMaster.Action.EndTurn:
+                animator.SetTrigger(resetTriggerAnimationName);
+                lastSettledCount = CountStanding();
+                break;
+        }
+
+        lastSettledCount = CountStanding();
         ball.Reset();
         pinNumberText.color = Color.green;
         ballEnteredBox = false;

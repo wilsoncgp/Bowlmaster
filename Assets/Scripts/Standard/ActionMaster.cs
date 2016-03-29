@@ -47,7 +47,7 @@ public class ActionMaster
                 bowl++;
                 return Action.Tidy;
             }
-            // If a strike wasn't bowled in this or the last frame,
+            // If a strike wasn't bowled in this or the last bowl,
             //  but a spare was bowled across the first and second bowl
             //  of the last frame, reset the pins
             else if(bowls[bowl - 2] + pins == 10)
