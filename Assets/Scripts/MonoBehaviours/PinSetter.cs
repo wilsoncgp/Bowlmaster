@@ -4,7 +4,6 @@ using System.Collections;
 
 public class PinSetter : MonoBehaviour
 {
-    public int lastStandingCount = -1;
     public Text pinNumberText;
     public float ballResetTime = 3.0f;
     public float distanceToRaise = 60.0f;
@@ -13,8 +12,9 @@ public class PinSetter : MonoBehaviour
     private const string tidyTriggerAnimationName = "tidyTrigger";
     private const string resetTriggerAnimationName = "resetTrigger";
 
+    private bool ballLeftBox = false;
+    private int lastStandingCount = -1;
     private Ball ball;
-    private bool ballEnteredBox = false;
     private float lastChangeTime = 0f;
     private ActionMaster actionMaster;
     private int lastSettledCount;
@@ -32,10 +32,15 @@ public class PinSetter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ballEnteredBox)
+        if(ballLeftBox)
         {
             UpdateStandingPins();
         }
+    }
+
+    public void SetBallHasLeftBox()
+    {
+        ballLeftBox = true;
     }
 
     public void RaisePins()
@@ -129,27 +134,27 @@ public class PinSetter : MonoBehaviour
         {
             case ActionMaster.Action.Tidy:
                 animator.SetTrigger(tidyTriggerAnimationName);
+                lastSettledCount = CountStanding();
                 break;
             case ActionMaster.Action.Reset:
             case ActionMaster.Action.EndTurn:
                 animator.SetTrigger(resetTriggerAnimationName);
-                lastSettledCount = CountStanding();
+                lastSettledCount = 10;
                 break;
         }
 
-        lastSettledCount = CountStanding();
         ball.Reset();
         pinNumberText.color = Color.green;
-        ballEnteredBox = false;
+        ballLeftBox = false;
         lastStandingCount = -1;
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        if(collider.gameObject.GetComponent<Ball>())
-        {
-            pinNumberText.color = Color.red;
-            ballEnteredBox = true;
-        }
-    }
+    //void OnTriggerEnter(Collider collider)
+    //{
+    //    if(collider.gameObject.GetComponent<Ball>())
+    //    {
+    //        pinNumberText.color = Color.red;
+    //        ballLeftBox = true;
+    //    }
+    //}
 }
