@@ -1618,7 +1618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!114 &11445880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!114 &11464988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1642,7 +1642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!114 &11472188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1654,7 +1654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!114 &11473560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1666,7 +1666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!114 &11477450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1678,7 +1678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!114 &11479380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!114 &11483786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!114 &11484474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1714,7 +1714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!114 &11496482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341ea0843903fd34ab056820e39b5e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingThreshold: 5
+  standingThreshold: 45
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ActionMaster
 {
@@ -8,7 +9,20 @@ public class ActionMaster
     private int[] bowls = new int[21];
     private int bowl = 1;
 
-    public Action Bowl(int pins)
+    public static Action NextAction(List<int> pinFalls)
+    {
+        ActionMaster actionMaster = new ActionMaster();
+        Action currentAction = Action.EndGame;
+
+        foreach(int pinFall in pinFalls)
+        {
+            currentAction = actionMaster.Bowl(pinFall);
+        }
+
+        return currentAction;
+    }
+
+    private Action Bowl(int pins)
     {
         // Throw exception if an invalid number of pins for a bowl
         if(pins < 0)
@@ -57,7 +71,6 @@ public class ActionMaster
             }
             else 
             {
-                ResetBowls();
                 return Action.EndGame;
             }
         }
@@ -66,7 +79,6 @@ public class ActionMaster
         //  so end the game
         if(bowl == 21)
         {
-            ResetBowls();
             return Action.EndGame;
         }
         
@@ -92,15 +104,5 @@ public class ActionMaster
         }
 
         throw new UnityException("No action specified by given pin count for specific bowl.");
-    }
-
-    /// <summary>
-    /// Reset the bowls for the game.
-    /// Should be called when game ends.
-    /// </summary>
-    private void ResetBowls()
-    {
-        bowls = new int[21];
-        bowl = 1;
     }
 }
