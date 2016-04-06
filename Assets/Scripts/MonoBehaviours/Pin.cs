@@ -6,7 +6,7 @@ public class Pin : MonoBehaviour
     public float standingThreshold = 25.0f;
 
     private Rigidbody rigidBody;
-    private Vector3 initialPosition;
+    //private Vector3 initialPosition;
 
     // Use this for initialization
     void Start()
@@ -16,7 +16,7 @@ public class Pin : MonoBehaviour
             rigidBody = this.GetComponent<Rigidbody>();
         }
 
-        initialPosition = this.transform.position;
+        //initialPosition = this.transform.position;
     }
 
     // Update is called once per frame
