@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -27,10 +27,63 @@ public class ScoreMaster
     {
         var frameList = new List<int>();
 
-        //for(int i= 0; i < rolls.Count; i++)
-        //{
+        bool strikeFlag = true;
+        bool bowledStrike = false;
+        int movesSinceStrike = 0;
+        bool bowledSpare = false;
 
-        //}
+        for (int i = 0; i < rolls.Count; i++)
+        {
+            if(bowledStrike)
+            {
+                movesSinceStrike++;
+
+                if(movesSinceStrike == 2)
+                {
+                    frameList.Add(rolls[i] + rolls[i - 1] + 10);
+                    
+                    if (rolls[i - 1] == 10)
+                    {
+                        bowledStrike = true;
+                        movesSinceStrike = 1;
+                        strikeFlag = !strikeFlag;
+                        continue;
+                    }
+
+                    bowledStrike = false;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            else if(bowledSpare)
+            {
+                frameList.Add(rolls[i] + 10);
+                bowledSpare = false;
+            }
+
+            if (rolls[i] == 10)
+            {
+                bowledStrike = true;
+                movesSinceStrike = 0;
+                strikeFlag = !strikeFlag;
+                continue;
+            }
+
+            if ((i % 2 == 1) == strikeFlag)
+            {
+                int combinedScore = rolls[i] + rolls[i - 1];
+                if(combinedScore == 10)
+                {
+                    bowledSpare = true;
+                }
+                else if(frameList.Count < 10)
+                {
+                    frameList.Add(rolls[i] + rolls[i - 1]);
+                }
+            }
+        }
 
         return frameList;
     }
