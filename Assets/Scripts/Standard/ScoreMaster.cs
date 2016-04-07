@@ -30,27 +30,32 @@ public class ScoreMaster
         // Loop through by default two rolls at a time
         for (int i = 1; i < rolls.Count && frameScores.Count < 10; i += 2)
         {
-            {
-                movesSinceStrike++;
+            // Grab what could be a full frame's score
+            int score = rolls[i] + rolls[i - 1];
 
-                if(movesSinceStrike == 2)
+            // If the score is greater than or equal to 10, a strike or spare has been scored over the two rolls
+            if (score >= 10)
+            {
+                // Add the frame score if the next roll exists
+                if (rolls.Count > i + 1)
                 {
+                    frameScores.Add(score + rolls[i + 1]);
                 }
+
+                // If the previous roll was a strike, set the counter back 1
+                //  to account for the missing roll.
+                if (rolls[i - 1] == 10)
                 {
+                    i--;
                 }
             }
-
+            else
             {
-                bowledStrike = true;
-                movesSinceStrike = 0;
-                strikeFlag = !strikeFlag;
-                continue;
-            }
-
-            if ((i % 2 == 1) == strikeFlag)
-            {
+                // If the score is less than 10, it's a regular frame so just add score
+                frameScores.Add(score);
             }
         }
 
+        return frameScores;
     }
 }
