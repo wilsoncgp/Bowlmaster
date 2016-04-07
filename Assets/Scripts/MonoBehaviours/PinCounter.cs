@@ -10,7 +10,7 @@ public class PinCounter : MonoBehaviour
     private GameManager gameManager;
     private bool ballLeftBox = false;
     private int lastStandingCount = -1;
-    private int lastSettledCount;
+    private int lastSettledCount = 10;
     private float lastChangeTime = 0f;
 
     // Use this for initialization
@@ -89,8 +89,8 @@ public class PinCounter : MonoBehaviour
     void PinsHaveSettled()
     {
         int standing = CountStanding();
-        int pinFall = lastStandingCount - standing;
-        lastStandingCount = standing;
+        int pinFall = lastSettledCount - standing;
+        lastSettledCount = standing;
 
         gameManager.Bowl(pinFall);
 

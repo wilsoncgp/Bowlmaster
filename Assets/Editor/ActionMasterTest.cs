@@ -24,6 +24,12 @@ public class ActionMasterTest
     }
 
     [Test]
+    public void BowlStrikeFirstReturnsEndTurn()
+    {
+        Assert.AreEqual(endTurn, ActionMaster.NextAction(new List<int>() { 10 }));
+    }
+
+    [Test]
     public void BowlSpareReturnsEndTurn()
     {
         int firstBowl = Random.Range(0, 10);
