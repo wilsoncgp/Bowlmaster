@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,7 +13,7 @@ public class ScoreMaster
         var frameScores = ScoreFrames(rolls);
         int currentCumulativeScore = 0;
 
-        foreach(int frame in frameScores)
+        foreach (int frame in frameScores)
         {
             currentCumulativeScore += frame;
             scoreList.Add(currentCumulativeScore);
@@ -25,45 +25,21 @@ public class ScoreMaster
     // Return a list of individual frame scores, not cumulative
     public static List<int> ScoreFrames(List<int> rolls)
     {
-        var frameList = new List<int>();
+        var frameScores = new List<int>();
 
-        bool strikeFlag = true;
-        bool bowledStrike = false;
-        int movesSinceStrike = 0;
-        bool bowledSpare = false;
-
-        for (int i = 0; i < rolls.Count; i++)
+        // Loop through by default two rolls at a time
+        for (int i = 1; i < rolls.Count && frameScores.Count < 10; i += 2)
         {
-            if(bowledStrike)
             {
                 movesSinceStrike++;
 
                 if(movesSinceStrike == 2)
                 {
-                    frameList.Add(rolls[i] + rolls[i - 1] + 10);
-                    
-                    if (rolls[i - 1] == 10)
-                    {
-                        bowledStrike = true;
-                        movesSinceStrike = 1;
-                        strikeFlag = !strikeFlag;
-                        continue;
-                    }
-
-                    bowledStrike = false;
                 }
-                else
                 {
-                    continue;
                 }
             }
-            else if(bowledSpare)
-            {
-                frameList.Add(rolls[i] + 10);
-                bowledSpare = false;
-            }
 
-            if (rolls[i] == 10)
             {
                 bowledStrike = true;
                 movesSinceStrike = 0;
@@ -73,18 +49,8 @@ public class ScoreMaster
 
             if ((i % 2 == 1) == strikeFlag)
             {
-                int combinedScore = rolls[i] + rolls[i - 1];
-                if(combinedScore == 10)
-                {
-                    bowledSpare = true;
-                }
-                else if(frameList.Count < 10)
-                {
-                    frameList.Add(rolls[i] + rolls[i - 1]);
-                }
             }
         }
 
-        return frameList;
     }
 }
