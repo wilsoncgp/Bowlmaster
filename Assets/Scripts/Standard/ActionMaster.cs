@@ -2,107 +2,71 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ActionMaster
+public static class ActionMaster
 {
-    public enum Action { Tidy, Reset, EndTurn, EndGame }
+    public enum Action { Tidy, Reset, EndTurn, EndGame, Undefined };
 
-    private int[] bowls = new int[21];
-    private int bowl = 1;
-
-    public static Action NextAction(List<int> pinFalls)
+    public static Action NextAction(List<int> rolls)
     {
-        ActionMaster actionMaster = new ActionMaster();
-        Action currentAction = Action.EndGame;
+        // Create temporary rolls variable to avoid writing out
+        //  the 'virtual' 0s.
+        var tempRolls = new List<int>(rolls);
 
-        foreach(int pinFall in pinFalls)
-        {
-            currentAction = actionMaster.Bowl(pinFall);
-        }
+        Action nextAction = Action.Undefined;
 
-        return currentAction;
-    }
-
-    private Action Bowl(int pins)
-    {
-        // Throw exception if an invalid number of pins for a bowl
-        if(pins < 0)
+        // Step through rolls
+        for (int i = 0; i < tempRolls.Count; i++)
         {
-            throw new UnityException("Number of pins cannot be less than 0.");
-        }
-        else if(pins > 10)
-        {
-            throw new UnityException("Number of pins cannot be greater than 10.");
-        }
-
-        // Store value for bowl
-        bowls[bowl - 1] = pins;
-        
-        // If first bowl of last frame and bowled a strike
-        //  it must reset the pins
-        if(bowl == 19 && pins == 10)
-        {
-            bowl++;
-            return Action.Reset;
-        }
-
-        // If it's the second bowl of the last frame
-        if(bowl == 20)
-        {
-            // If a strike or 0,10 spare was bowled, reset the pins
-            if(pins == 10)
+            if (i == 20)
             {
-                bowl++;
-                return Action.Reset;
+                nextAction = Action.EndGame;
             }
-            // If a strike was bowled in previous bowl
-            //  but not this bowl, tidy the pins
-            else if (bowls[bowl - 2] == 10)
+            // Handle last-frame special cases
+            else if (i >= 18 && tempRolls[i] == 10)
             {
-                bowl++;
-                return Action.Tidy;
+                nextAction = Action.Reset;
             }
-            // If a strike wasn't bowled in this or the last bowl,
-            //  but a spare was bowled across the first and second bowl
-            //  of the last frame, reset the pins
-            else if(bowls[bowl - 2] + pins == 10)
+            else if (i == 19)
             {
-                bowl++;
-                return Action.Reset;
+                if (tempRolls[18] == 10 && tempRolls[19] == 0)
+                {
+                    nextAction = Action.Tidy;
+                }
+                else if (tempRolls[18] + tempRolls[19] == 10)
+                {
+                    nextAction = Action.Reset;
+                }
+                // Roll 21 awarded
+                else if (tempRolls[18] + tempRolls[19] >= 10)
+                {
+                    nextAction = Action.Tidy;
+                }
+                else
+                {
+                    nextAction = Action.EndGame;
+                }
             }
-            else 
+            // First bowl of frame
+            else if (i % 2 == 0)
             {
-                return Action.EndGame;
+                if (tempRolls[i] == 10)
+                {
+                    // Insert virtual 0 after strike
+                    tempRolls.Insert(i, 0);
+                    nextAction = Action.EndTurn;
+                }
+                else
+                {
+                    nextAction = Action.Tidy;
+                }
             }
-        }
-
-        // If third bowl of final frame, must be final bowl
-        //  so end the game
-        if(bowl == 21)
-        {
-            return Action.EndGame;
-        }
-        
-        // If in first bowl of frame
-        if(bowl % 2 == 1)
-        {
-            // Bowled a strike
-            if(pins == 10)
-            {
-                bowl += 2;
-                return Action.EndTurn;
-            }
+            // Second bowl of frame
             else
             {
-                bowl++;
-                return Action.Tidy;
+                nextAction = Action.EndTurn;
             }
         }
-        else if(bowl % 2 == 0)
-        {
-            bowl++;
-            return Action.EndTurn;
-        }
 
-        throw new UnityException("No action specified by given pin count for specific bowl.");
+        return nextAction;
     }
 }

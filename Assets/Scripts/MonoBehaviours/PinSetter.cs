@@ -74,7 +74,6 @@ public class PinSetter : MonoBehaviour
         {
             case ActionMaster.Action.Tidy:
                 animator.SetTrigger(tidyTriggerAnimationName);
-                pinCounter.Reset();
                 break;
             case ActionMaster.Action.Reset:
             case ActionMaster.Action.EndTurn:
